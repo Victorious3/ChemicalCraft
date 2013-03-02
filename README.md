@@ -5,6 +5,7 @@ It uses Minecraft Forge so you're going to need that to run my mod. It's found o
 good tutorials how to install it.
 
 My mod also needs some sort of Electricity Api and the only one currently supported is Industerial Craft. It's found on
-industerial-craft.net. Integration of the Universial Electricity Api is planned and I'll start with it as soon as I
+industerial-craft.net. Integration of the Universial Electricity Api is planned and I'll start with it as soon as I 
 finished the very basics of my mod.
+
 =============

@@ -17,7 +17,7 @@ public class CC_Registry {
     // Blocks
     public static Block genericGas;
     public static Block gasBore;
-    public static Block heatProducer;
+    public static Block heatProducer;   
     
     // Items
     public static Item substance;
@@ -50,5 +50,6 @@ public class CC_Registry {
         LanguageRegistry.addName(tongs, "Iron Tongs");
         LanguageRegistry.addName(gloves, "Lether Gloves");
         LanguageRegistry.addName(periodicTable, "Periodic Table");
+        
 	}
 }

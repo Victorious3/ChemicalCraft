@@ -18,7 +18,6 @@ import net.minecraftforge.common.MinecraftForge;
 
 public class TileEntityElectric extends TileEntity implements IEnergySink, IEnergySource, IWrenchable, IEnergyStorage 
 {
-
 	public int powerLevel = 0;
 	public int maxPowerLevel = 0;
 	public int maxSafeInput = 0;
@@ -85,6 +84,13 @@ public class TileEntityElectric extends TileEntity implements IEnergySink, IEner
 		
 		if(this.powerLevel < this.maxPowerLevel)
 		{
+			if(this.powerLevel + amount > this.maxPowerLevel)
+			{
+				int back = (this.powerLevel + amount) - this.maxPowerLevel; 
+				this.addEnergy(amount - back);
+				this.energyDemand = 0;
+				return back;
+			}		
 			this.addEnergy(amount);
 		}
 		else return amount;
@@ -129,8 +135,7 @@ public class TileEntityElectric extends TileEntity implements IEnergySink, IEner
 		if(energy <= this.maxPowerLevel)
 		{
 			powerLevel = energy;
-		}
-		
+		}		
 	}
 
 	@Override
@@ -174,6 +179,7 @@ public class TileEntityElectric extends TileEntity implements IEnergySink, IEner
 	public void setFacing(short facing) 
 	{		
 		this.orientation = facing;
+		this.worldObj.markBlockForUpdate(this.xCoord, this.yCoord, this.zCoord);
 	}
 
 	@Override
@@ -191,7 +197,7 @@ public class TileEntityElectric extends TileEntity implements IEnergySink, IEner
 	@Override
 	public ItemStack getWrenchDrop(EntityPlayer entityPlayer) 
 	{
-		return new ItemStack(this.blockType, 1, this.blockMetadata);
+		return new ItemStack(this.blockType, 1);
 	}
 
 	@Override

@@ -12,10 +12,10 @@ public class Utils {
 		
 		switch(var1)
 		{
-		case 0 : return ForgeDirection.WEST;
-		case 1 : return ForgeDirection.NORTH;
-		case 2 : return ForgeDirection.EAST;
-		case 3 : return ForgeDirection.SOUTH;
+		case 0 : return ForgeDirection.NORTH;
+		case 1 : return ForgeDirection.EAST;
+		case 2 : return ForgeDirection.SOUTH;
+		case 3 : return ForgeDirection.WEST;
 		}
 		
 		return ForgeDirection.UNKNOWN;

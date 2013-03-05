@@ -29,14 +29,14 @@ public class RenderGasBore extends TileEntitySpecialRenderer {
         	{
         		var1 = ForgeDirection.getOrientation(((TileEntityGasBore)tileentity).orientation);
         	}  	
-        }        
+        }
     	
         switch (var1)
         {
-    	case NORTH : rotation = 90; break;
-    	case SOUTH : rotation = 270; break;
-    	case WEST : rotation = 0; break;
-    	case EAST : rotation = 180; break;
+    	case NORTH : rotation = 0; break;
+    	case SOUTH : rotation = 180; break;
+    	case WEST : rotation = 270; break;
+    	case EAST : rotation = 90; break;
 		default: break;
         }
     	

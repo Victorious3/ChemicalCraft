@@ -1,8 +1,12 @@
 package vic.chemicalcraft.handler;
 
-import vic.chemicalcraft.substance.SubstanceResearch;
+import net.minecraft.tileentity.TileEntity;
+import net.minecraftforge.common.ForgeDirection;
 import net.minecraftforge.event.ForgeSubscribe;
 import net.minecraftforge.event.world.WorldEvent;
+import vic.chemicalcraft.api.heat.EventHeatSend;
+import vic.chemicalcraft.api.heat.IHeatAcceptor;
+import vic.chemicalcraft.substance.SubstanceResearch;
 
 public class EventHandler {
 
@@ -20,8 +24,30 @@ public class EventHandler {
 	}
 	
 	@ForgeSubscribe
-	public void worldUnload(WorldEvent.Save event)
-	{
-
-	}
+	public void worldUnload(WorldEvent.Save event){}
+	
+	@ForgeSubscribe
+	public void heatSend(EventHeatSend event) 
+	{				
+		for (ForgeDirection o : event.fdircetion)
+		{
+			event.position.plus(1);
+			
+			TileEntity TE = event.world.getBlockTileEntity((int)event.position.x, (int)event.position.y, (int)event.position.z);
+			
+			if(TE != null)
+			{
+				if(TE instanceof IHeatAcceptor)
+				{
+					IHeatAcceptor ha = (IHeatAcceptor)TE;
+					
+					if(ha.getActiveSides(o.getOpposite()))
+					{
+						int heatBack = ha.getHeat(o.getOpposite(), event.heat);
+						event.sender.onHeatSend(o, heatBack);
+					}
+				}
+			}
+		}
+	}	
 }

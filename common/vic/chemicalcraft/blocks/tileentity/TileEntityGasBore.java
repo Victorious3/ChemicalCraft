@@ -22,4 +22,6 @@ public class TileEntityGasBore extends TileEntityElectric {
 		// TODO Auto-generated method stub
 		return true;
 	}
+	
+	
 }

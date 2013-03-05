@@ -16,7 +16,8 @@ import net.minecraft.network.packet.Packet132TileEntityData;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraftforge.common.MinecraftForge;
 
-public class TileEntityElectric extends TileEntity implements IEnergySink, IEnergySource, IWrenchable, IEnergyStorage {
+public class TileEntityElectric extends TileEntity implements IEnergySink, IEnergySource, IWrenchable, IEnergyStorage 
+{
 
 	public int powerLevel = 0;
 	public int maxPowerLevel = 0;
@@ -25,7 +26,7 @@ public class TileEntityElectric extends TileEntity implements IEnergySink, IEner
 	public int energyDemand = 0;
 	public int energyOutput = 0;
 		
-	public short facing = 0;
+	public short orientation = 2;
 	
 	boolean isAddedToEnergyNet = false;	
 	
@@ -49,6 +50,7 @@ public class TileEntityElectric extends TileEntity implements IEnergySink, IEner
 	{
 		super.readFromNBT(par1nbtTagCompound);
 		powerLevel = par1nbtTagCompound.getInteger("powerLevel");
+		this.orientation = (short)par1nbtTagCompound.getInteger("orientation");
 	}
 
 	@Override
@@ -56,6 +58,7 @@ public class TileEntityElectric extends TileEntity implements IEnergySink, IEner
 	{
 		super.writeToNBT(par1nbtTagCompound);
 		par1nbtTagCompound.setInteger("powerLevel", powerLevel);
+		par1nbtTagCompound.setInteger("orientation", this.orientation);
 	}
 
 	@Override
@@ -158,19 +161,19 @@ public class TileEntityElectric extends TileEntity implements IEnergySink, IEner
 	@Override
 	public boolean wrenchCanSetFacing(EntityPlayer entityPlayer, int side) 
 	{
-		 return (side != this.facing);
+		 return (side != this.orientation);
 	}
 
 	@Override
 	public short getFacing() 
 	{
-		return facing;
+		return orientation;
 	}
 
 	@Override
 	public void setFacing(short facing) 
 	{		
-		this.facing = facing;
+		this.orientation = facing;
 	}
 
 	@Override

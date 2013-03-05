@@ -2,15 +2,6 @@ package vic.chemicalcraft.items;
 
 import java.util.List;
 
-import vic.chemicalcraft.ChemicalCraft;
-import vic.chemicalcraft.blocks.tileentity.TileEntityGas;
-import vic.chemicalcraft.helper.HeatTicker;
-import vic.chemicalcraft.substance.EnumPhase;
-import vic.chemicalcraft.substance.ISubstanceInterface;
-import vic.chemicalcraft.substance.Substance;
-import vic.chemicalcraft.substance.SubstanceRegistry;
-import vic.chemicalcraft.substance.SubstanceStack;
-
 import net.minecraft.block.Block;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.Entity;
@@ -18,7 +9,14 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.world.World;
-
+import vic.chemicalcraft.CC_Registry;
+import vic.chemicalcraft.blocks.tileentity.TileEntityGas;
+import vic.chemicalcraft.helper.HeatTicker;
+import vic.chemicalcraft.substance.EnumPhase;
+import vic.chemicalcraft.substance.ISubstanceInterface;
+import vic.chemicalcraft.substance.Substance;
+import vic.chemicalcraft.substance.SubstanceRegistry;
+import vic.chemicalcraft.substance.SubstanceStack;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
@@ -141,7 +139,7 @@ public class GenericSubstance extends GenericChemItem implements ISubstanceInter
 		if(par1ItemStack.getItemDamage() == 3)
 		{
 			int var11 = par3World.getBlockId(par4, par5, par6);
-			int spawnID = ChemicalCraft.genericGas.blockID;
+			int spawnID = CC_Registry.genericGas.blockID;
 
 	        if (var11 == Block.snow.blockID)
 	        {
@@ -220,7 +218,7 @@ public class GenericSubstance extends GenericChemItem implements ISubstanceInter
 		                    }                 	                    
 		                    else if(currSubstanceStack.amount == 1)
 		                    {                    	
-		                    	par2EntityPlayer.inventory.addItemStackToInventory(new ItemStack(ChemicalCraft.substance.itemID, 1, par1ItemStack.getItemDamage() + 3));
+		                    	par2EntityPlayer.inventory.addItemStackToInventory(new ItemStack(CC_Registry.substance.itemID, 1, par1ItemStack.getItemDamage() + 3));
 		                    	--par1ItemStack.stackSize;	
 		                    }
 		                    else

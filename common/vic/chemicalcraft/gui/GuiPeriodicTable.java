@@ -4,6 +4,8 @@ import org.lwjgl.input.Mouse;
 import org.lwjgl.opengl.GL11;
 
 import vic.chemicalcraft.proxy.CommonProxy;
+import vic.chemicalcraft.substance.Substance;
+import vic.chemicalcraft.substance.SubstanceRegistry;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.GuiScreen;
 
@@ -17,12 +19,16 @@ public class GuiPeriodicTable extends GuiScreen
 	int scrollY = 0;
 	boolean isScrolling = false;
 	
+	Substance[] substances = SubstanceRegistry.getAllSubstances();
+	
 	@Override
 	public void drawScreen(int par1, int par2, float par3) 
 	{
-		boolean var4 = Mouse.isButtonDown(0);
-		
 		drawDefaultBackground();
+		
+		boolean var4 = Mouse.isButtonDown(0);		
+		
+		GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
 		this.mc.renderEngine.bindTexture(this.mc.renderEngine.getTexture(CommonProxy.GUI_PERIODIC));
 		drawTexturedModalRect(guiLeft, guiTop, 0, 0, xSize, ySize);
 		
@@ -30,6 +36,8 @@ public class GuiPeriodicTable extends GuiScreen
 		fontRenderer.drawString("Solid", guiLeft + 15, guiTop + 22, 0xFF3A3A);
 		fontRenderer.drawString("Liquid", guiLeft + 90, guiTop + 22, 0x4762FF);
 		fontRenderer.drawString("Gaseous", guiLeft + 165, guiTop + 22, 0x66B743);
+		
+		drawSubstances();
 		
 		GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
 		this.mc.renderEngine.bindTexture(this.mc.renderEngine.getTexture(CommonProxy.GUI_PERIODIC));
@@ -52,6 +60,11 @@ public class GuiPeriodicTable extends GuiScreen
 		}
 		
 		super.drawScreen(par1, par2, par3);
+	}
+
+	private void drawSubstances() 
+	{
+		
 	}
 
 	@Override

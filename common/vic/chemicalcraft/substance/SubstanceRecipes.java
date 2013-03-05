@@ -2,12 +2,12 @@ package vic.chemicalcraft.substance;
 
 import java.util.ArrayList;
 
-import vic.chemicalcraft.ChemicalCraft;
 import net.minecraft.inventory.InventoryCrafting;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.IRecipe;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.world.World;
+import vic.chemicalcraft.CC_Registry;
 
 public class SubstanceRecipes implements IRecipe {
 
@@ -24,7 +24,7 @@ public class SubstanceRecipes implements IRecipe {
 			
 			if(var4 != null)
 			{
-				if(var1.getStackInSlot(var3).itemID == ChemicalCraft.substance.itemID)
+				if(var1.getStackInSlot(var3).itemID == CC_Registry.substance.itemID)
 				{
 					if(SubstanceStack.getFromNBT(var1.getStackInSlot(var3).getTagCompound()) != null)
 					{

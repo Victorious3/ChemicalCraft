@@ -1,9 +1,9 @@
 package vic.chemicalcraft.handler;
 
-import vic.chemicalcraft.ChemicalCraft;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
+import vic.chemicalcraft.CC_Registry;
 import cpw.mods.fml.common.ICraftingHandler;
 
 public class CraftingHandler implements ICraftingHandler {
@@ -11,7 +11,7 @@ public class CraftingHandler implements ICraftingHandler {
 	@Override
 	public void onCrafting(EntityPlayer player, ItemStack item, IInventory craftMatrix) 
 	{		
-		if(item.itemID == ChemicalCraft.substance.itemID)
+		if(item.itemID == CC_Registry.substance.itemID)
 		{
 			int var1 = 0;
 			
@@ -21,7 +21,7 @@ public class CraftingHandler implements ICraftingHandler {
 				craftMatrix.setInventorySlotContents(i, null);					
 			}
 			
-			player.inventory.addItemStackToInventory(new ItemStack(ChemicalCraft.substance.itemID, var1 - 1, item.getItemDamage() + 3));
+			player.inventory.addItemStackToInventory(new ItemStack(CC_Registry.substance.itemID, var1 - 1, item.getItemDamage() + 3));
 		}		
 	}
 

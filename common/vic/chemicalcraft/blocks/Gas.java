@@ -1,10 +1,7 @@
-package vic.chemicalcraft.gases;
+package vic.chemicalcraft.blocks;
 
 import java.util.ArrayList;
 import java.util.Random;
-
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
@@ -14,9 +11,7 @@ import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.common.ForgeDirection;
-
-import vic.chemicalcraft.ChemicalCraft;
-import vic.chemicalcraft.blocks.GenericChemBlock;
+import vic.chemicalcraft.CC_Registry;
 import vic.chemicalcraft.blocks.tileentity.TileEntityGas;
 import vic.chemicalcraft.helper.Position;
 import vic.chemicalcraft.substance.EnumPhase;
@@ -24,6 +19,8 @@ import vic.chemicalcraft.substance.ISubstanceInterface;
 import vic.chemicalcraft.substance.Substance;
 import vic.chemicalcraft.substance.SubstanceRegistry;
 import vic.chemicalcraft.substance.SubstanceStack;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
 public class Gas extends GenericChemBlock implements ISubstanceInterface{
 	
@@ -51,7 +48,7 @@ public class Gas extends GenericChemBlock implements ISubstanceInterface{
 			for(int i= 0; i < pos.size(); i++)
 			{
 				Position posX = pos.get(i);
-				par1World.setBlock((int)posX.x, (int)posX.y, (int)posX.z, ChemicalCraft.genericGas.blockID);
+				par1World.setBlock((int)posX.x, (int)posX.y, (int)posX.z, CC_Registry.genericGas.blockID);
 				par1World.setBlockTileEntity((int)posX.x, (int)posX.y, (int)posX.z, new TileEntityGas(currTE.substanceStack, strenghtToPass));
 				par1World.markBlockForUpdate((int)posX.x, (int)posX.y, (int)posX.z);
 			}	
@@ -79,7 +76,7 @@ public class Gas extends GenericChemBlock implements ISubstanceInterface{
 		for (ForgeDirection o : ForgeDirection.VALID_DIRECTIONS)
 		{
 			Position pos = new Position(par1, par2, par3, o);
-			pos.onePlus(1);
+			pos.plus(1);
 			
 			int block = par4World.getBlockId((int)pos.x, (int)pos.y, (int)pos.z);
 			

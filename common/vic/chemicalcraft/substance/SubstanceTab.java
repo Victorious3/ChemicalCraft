@@ -1,10 +1,10 @@
 package vic.chemicalcraft.substance;
 
-import vic.chemicalcraft.ChemicalCraft;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
+import vic.chemicalcraft.CC_Registry;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
 public class SubstanceTab extends CreativeTabs{
 
@@ -21,7 +21,7 @@ public class SubstanceTab extends CreativeTabs{
 	@Override
 	@SideOnly(Side.CLIENT)
 	public Item getTabIconItem() {
-		return ChemicalCraft.substance;
+		return CC_Registry.substance;
 	}
 	
 	

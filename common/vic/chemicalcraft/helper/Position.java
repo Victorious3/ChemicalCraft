@@ -13,7 +13,7 @@ public class Position {
 		this.direction = direction;
 	}
 	
-	public void onePlus(double step) {
+	public void plus(double step) {
 		
 		switch (direction) {
 		case UP:

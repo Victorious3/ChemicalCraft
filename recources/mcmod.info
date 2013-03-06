@@ -1,0 +1,17 @@
+[
+{
+  "modid": "ChemicalCraft",
+  "name": "Chemical Craft",
+  "version": "",
+  "description": "Adds various chemicals and nifty machines to use those chemicals!",
+  "mcversion": "",
+
+  "authorList": ["Victorious3"],
+  "url": "http://github.com/Victorious3/ChemicalCraft",
+
+  "parent":"",
+  "requiredMods": [],
+  "dependencies": [],
+  "useDependencyInformation": "true"
+}
+]

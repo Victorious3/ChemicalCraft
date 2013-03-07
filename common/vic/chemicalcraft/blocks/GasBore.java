@@ -21,7 +21,7 @@ public class GasBore extends GenericChemBlock {
 	public void onBlockPlacedBy(World par1World, int par2, int par3, int par4, EntityLiving par5EntityLiving) 
 	{
 		TileEntityElectric TE = (TileEntityElectric) par1World.getBlockTileEntity(par2, par3, par4);
-		TE.orientation = (short) Utils.get2DOrientationForPlacing(par5EntityLiving).ordinal();
+		TE.orientation = (short) Utils.get2DOrientationForPlacing(par5EntityLiving).ordinal();	
 	}
 
 	@Override
@@ -31,9 +31,8 @@ public class GasBore extends GenericChemBlock {
 	}
 
 	@Override
-	public boolean onBlockActivated(World par1World, int par2, int par3, int par4, EntityPlayer par5EntityPlayer, int par6, float par7, float par8, float par9) {
-		// TODO Auto-generated method stub
-		
+	public boolean onBlockActivated(World par1World, int par2, int par3, int par4, EntityPlayer par5EntityPlayer, int par6, float par7, float par8, float par9) 
+	{		
 		if(!par1World.isRemote)par5EntityPlayer.sendChatToPlayer(Integer.toString(((TileEntityGasBore)(par1World.getBlockTileEntity(par2, par3, par4))).powerLevel));
 		return true;
 	}

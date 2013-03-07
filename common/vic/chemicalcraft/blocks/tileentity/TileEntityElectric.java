@@ -27,14 +27,16 @@ public class TileEntityElectric extends TileEntity implements IEnergySink, IEner
 		
 	public short orientation = 2;
 	
-	boolean isAddedToEnergyNet = false;	
+	boolean isAddedToEnergyNet = false;
+	boolean firstTick = true;
 	
 	@Override
 	public void updateEntity() {
-		if(!isAddedToEnergyNet)
+		if(firstTick)
 		{
 			MinecraftForge.EVENT_BUS.post(new EnergyTileLoadEvent(this));
 			isAddedToEnergyNet = true;
+			firstTick = false;
 		}
 	}
 
@@ -166,7 +168,12 @@ public class TileEntityElectric extends TileEntity implements IEnergySink, IEner
 	@Override
 	public boolean wrenchCanSetFacing(EntityPlayer entityPlayer, int side) 
 	{
-		 return (side != this.orientation);
+		 return (side != this.orientation) && isOrientationValid(entityPlayer, side);
+	}
+	
+	public boolean isOrientationValid(EntityPlayer entityPlayer, int side)
+	{
+		return true;
 	}
 
 	@Override
@@ -177,9 +184,16 @@ public class TileEntityElectric extends TileEntity implements IEnergySink, IEner
 
 	@Override
 	public void setFacing(short facing) 
-	{		
-		this.orientation = facing;
-		this.worldObj.markBlockForUpdate(this.xCoord, this.yCoord, this.zCoord);
+	{				
+		if (this.isAddedToEnergyNet) MinecraftForge.EVENT_BUS.post(new EnergyTileUnloadEvent(this));
+	    this.isAddedToEnergyNet = false;
+
+	    this.orientation = facing;
+
+	    MinecraftForge.EVENT_BUS.post(new EnergyTileLoadEvent(this));
+	    this.isAddedToEnergyNet = true;
+	    
+	    this.worldObj.markBlockForUpdate(this.xCoord, this.yCoord, this.zCoord);
 	}
 
 	@Override
@@ -197,7 +211,7 @@ public class TileEntityElectric extends TileEntity implements IEnergySink, IEner
 	@Override
 	public ItemStack getWrenchDrop(EntityPlayer entityPlayer) 
 	{
-		return new ItemStack(this.blockType, 1);
+		return new ItemStack(this.getBlockType(), 1);
 	}
 
 	@Override

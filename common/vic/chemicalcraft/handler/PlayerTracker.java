@@ -8,7 +8,7 @@ public class PlayerTracker implements IPlayerTracker{
 
 	@Override
 	public void onPlayerLogin(EntityPlayer player) {
-		player.sendChatToPlayer("Welcome " + player.username + " to the ForgeCraft server! You are currently in World " + player.worldObj.provider.getDimensionName() + " and the current time is: " + player.worldObj.provider.getWorldTime());
+		player.sendChatToPlayer("Welcome " + player.username + " to the ChemicalCraft Alpha! You are currently in World " + player.worldObj.provider.getDimensionName() + " and the current time is: " + player.worldObj.provider.getWorldTime() + ". This is a debug message.");
 		PacketHandler.sendResearchData(player);
 	}
 

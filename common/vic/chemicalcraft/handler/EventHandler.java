@@ -36,7 +36,7 @@ public class EventHandler {
 			p.direction = o;
 			p.plus(1);
 			
-			System.out.println(p.x + " " + p.y + " " + p.z);
+//			System.out.println(p.x + " " + p.y + " " + p.z);
 			
 			TileEntity TE = event.world.getBlockTileEntity((int)p.x, (int)p.y, (int)p.z);
 			

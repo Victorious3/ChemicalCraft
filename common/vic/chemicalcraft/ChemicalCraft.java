@@ -6,6 +6,7 @@ import net.minecraftforge.common.Configuration;
 import universalelectricity.core.UniversalElectricity;
 import vic.chemicalcraft.blocks.tileentity.TileEntityGas;
 import vic.chemicalcraft.blocks.tileentity.TileEntityGasBore;
+import vic.chemicalcraft.blocks.tileentity.TileEntityHeatAcceptor;
 import vic.chemicalcraft.blocks.tileentity.TileEntityHeatProducer;
 import vic.chemicalcraft.handler.GuiHandler;
 import vic.chemicalcraft.handler.PacketHandler;
@@ -43,6 +44,7 @@ public class ChemicalCraft {
         public static int genericGasID;
         public static int gasBoreID;
         public static int heatProducerID;
+        public static int heatAcceptorID;
         
         public static int substanceID;
         public static int glovesID;
@@ -61,6 +63,7 @@ public class ChemicalCraft {
         	genericGasID = config.get(Configuration.CATEGORY_BLOCK, "genericGas", 2500).getInt();
         	gasBoreID = config.get(Configuration.CATEGORY_BLOCK, "gasBore", 2501).getInt();
         	heatProducerID = config.get(Configuration.CATEGORY_BLOCK, "heatProducer", 2502).getInt();
+        	heatAcceptorID = config.get(Configuration.CATEGORY_BLOCK, "heatAcceptor", 2503).getInt();
         	
         	substanceID = config.get(Configuration.CATEGORY_ITEM, "genericSubstance", 10000).getInt();
         	glovesID = config.get(Configuration.CATEGORY_ITEM, "gloves", 10001).getInt();
@@ -91,6 +94,7 @@ public class ChemicalCraft {
             GameRegistry.registerTileEntity(TileEntityGas.class, "CC_TileEntityGas");
             GameRegistry.registerTileEntity(TileEntityGasBore.class, "CC_TileEntityGasBore");
             GameRegistry.registerTileEntity(TileEntityHeatProducer.class, "CC_TileEntityHeatProducer");
+            GameRegistry.registerTileEntity(TileEntityHeatAcceptor.class, "CC_TileEntityHeatAcceptor");
                 
             // Crafting                
             CraftingManager.getInstance().getRecipeList().add(new SubstanceRecipes());

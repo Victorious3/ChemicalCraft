@@ -5,7 +5,7 @@ import net.minecraftforge.common.ForgeDirection;
 public class Position {
 
 	public double x, y, z;
-	private ForgeDirection direction;
+	public ForgeDirection direction;
 	
 	public Position(double x, double y, double z, ForgeDirection direction) 
 	{

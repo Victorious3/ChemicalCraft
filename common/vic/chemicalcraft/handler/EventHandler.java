@@ -6,6 +6,7 @@ import net.minecraftforge.event.ForgeSubscribe;
 import net.minecraftforge.event.world.WorldEvent;
 import vic.chemicalcraft.api.heat.EventHeatSend;
 import vic.chemicalcraft.api.heat.IHeatAcceptor;
+import vic.chemicalcraft.helper.Position;
 import vic.chemicalcraft.substance.SubstanceResearch;
 
 public class EventHandler {
@@ -31,9 +32,13 @@ public class EventHandler {
 	{				
 		for (ForgeDirection o : event.fdircetion)
 		{
-			event.position.plus(1);
+			Position p = event.position;
+			p.direction = o;
+			p.plus(1);
 			
-			TileEntity TE = event.world.getBlockTileEntity((int)event.position.x, (int)event.position.y, (int)event.position.z);
+			System.out.println(p.x + " " + p.y + " " + p.z);
+			
+			TileEntity TE = event.world.getBlockTileEntity((int)p.x, (int)p.y, (int)p.z);
 			
 			if(TE != null)
 			{

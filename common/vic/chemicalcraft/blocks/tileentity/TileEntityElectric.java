@@ -50,16 +50,18 @@ public class TileEntityElectric extends TileEntity implements IEnergySink, IEner
 	public void readFromNBT(NBTTagCompound par1nbtTagCompound) 
 	{
 		super.readFromNBT(par1nbtTagCompound);
-		powerLevel = par1nbtTagCompound.getInteger("powerLevel");
+		this.powerLevel = par1nbtTagCompound.getInteger("powerLevel");
 		this.orientation = (short)par1nbtTagCompound.getInteger("orientation");
+		this.energyDemand = par1nbtTagCompound.getInteger("energyDemand");
 	}
 
 	@Override
 	public void writeToNBT(NBTTagCompound par1nbtTagCompound) 
 	{
 		super.writeToNBT(par1nbtTagCompound);
-		par1nbtTagCompound.setInteger("powerLevel", powerLevel);
+		par1nbtTagCompound.setInteger("powerLevel", this.powerLevel);
 		par1nbtTagCompound.setInteger("orientation", this.orientation);
+		par1nbtTagCompound.setInteger("energyDemand", this.energyDemand);
 	}
 
 	@Override

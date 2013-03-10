@@ -1,4 +1,4 @@
-package vic.chemicalcraft.helper;
+package vic.chemicalcraft.handler;
 
 import java.util.HashMap;
 

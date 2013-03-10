@@ -1,5 +1,6 @@
 package vic.chemicalcraft;
 
+import net.minecraft.command.CommandHandler;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.crafting.CraftingManager;
 import net.minecraftforge.common.Configuration;
@@ -8,6 +9,7 @@ import vic.chemicalcraft.blocks.tileentity.TileEntityGas;
 import vic.chemicalcraft.blocks.tileentity.TileEntityGasBore;
 import vic.chemicalcraft.blocks.tileentity.TileEntityHeatAcceptor;
 import vic.chemicalcraft.blocks.tileentity.TileEntityHeatProducer;
+import vic.chemicalcraft.commands.CommandResearch;
 import vic.chemicalcraft.handler.GuiHandler;
 import vic.chemicalcraft.handler.PacketHandler;
 import vic.chemicalcraft.proxy.CommonProxy;
@@ -20,10 +22,12 @@ import cpw.mods.fml.common.Mod.Init;
 import cpw.mods.fml.common.Mod.Instance;
 import cpw.mods.fml.common.Mod.PostInit;
 import cpw.mods.fml.common.Mod.PreInit;
+import cpw.mods.fml.common.Mod.ServerStarting;
 import cpw.mods.fml.common.SidedProxy;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
+import cpw.mods.fml.common.event.FMLServerStartingEvent;
 import cpw.mods.fml.common.network.NetworkMod;
 import cpw.mods.fml.common.network.NetworkRegistry;
 import cpw.mods.fml.common.registry.GameRegistry;
@@ -81,7 +85,8 @@ public class ChemicalCraft {
         public static int renderID;
         
         @Init
-        public void load(FMLInitializationEvent event) {
+        public void load(FMLInitializationEvent event) 
+        {
         	
         	CC_Registry.registerBlocksAndItems();    	
         	
@@ -102,10 +107,18 @@ public class ChemicalCraft {
         }
         
         @PostInit
-        public void postInit(FMLPostInitializationEvent event) {
+        public void postInit(FMLPostInitializationEvent event) 
+        {
         	SubstanceRegistry.getInstance().addManifests();
         	
         	if(Loader.isModLoaded("Thaumcraft")) isThaumcraftLoaded = true;
         	if(Loader.isModLoaded("NotEnoughItems")) isNEILoaded = true;
+        }
+        
+        @ServerStarting
+        public void serverStarting(FMLServerStartingEvent event)
+        {
+           CommandHandler commandManager = (CommandHandler)event.getServer().getCommandManager();
+           commandManager.registerCommand(new CommandResearch());
         }
 }

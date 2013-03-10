@@ -1,7 +1,7 @@
 package vic.chemicalcraft.substance;
 
-import java.util.HashMap;
-import java.util.Arrays;
+import java.util.Collection;
+import java.util.LinkedHashMap;
 
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
@@ -11,8 +11,8 @@ import net.minecraft.item.ItemStack;
 
 public class SubstanceRegistry {
 	
-	private static HashMap substances = new HashMap<String, Substance>();
-	private static HashMap blocksList = new HashMap<Object, SubstanceStack>();
+	private static LinkedHashMap substances = new LinkedHashMap<String, Substance>();
+	private static LinkedHashMap blocksList = new LinkedHashMap<Object, SubstanceStack>();
 	
 	public static SubstanceRegistry instance = new SubstanceRegistry();
 	
@@ -30,8 +30,10 @@ public class SubstanceRegistry {
 	public static Substance Hydrogen = new Substance("Hydrogen", 0xFFD1D1, "H", -247, -253);	
 	
 	// Minecraft ones
-	public static Substance Electrolyt = new Substance("Eletrolyt", 0xFFD1D1, "El", 978, 1345);
+	public static Substance Electrolyt = new Substance("Electrolyt", 0xFFD1D1, "El", 978, 1345);
 	public static Substance Quarz = new Substance("Quarz", 0xFFFFFF, "Qz", 1266, 2680);
+	
+	private static int pointer = 1;
 	
 	public void addManifests()
 	{
@@ -66,8 +68,8 @@ public class SubstanceRegistry {
 	public static Substance[] getAllSubstances()
 	{
 		
-		Object[] object = substances.values().toArray();
-		Substance[] sublist = Arrays.copyOf(object, object.length, Substance[].class);
+		Collection object = substances.values();
+		Substance[] sublist = (Substance[]) object.toArray(new Substance[object.size()]);
 		
 		return sublist;
 		
@@ -102,6 +104,8 @@ public class SubstanceRegistry {
 	 */
 	public static void addSubstance(String name, Substance substance)
 	{
+		pointer++;
+		substance.id = pointer;
 		substances.put(name, substance);
 	}
 	

@@ -15,8 +15,8 @@ import vic.chemicalcraft.substance.SubstanceResearchClient;
 public class CommandResearch extends CommandBase{
 
 	@Override
-	public String getCommandName() {
-		// TODO Auto-generated method stub
+	public String getCommandName() 
+	{
 		return "changeresearch";
 	}
 
@@ -58,13 +58,13 @@ public class CommandResearch extends CommandBase{
 	@Override
 	public String getCommandUsage(ICommandSender par1iCommandSender) 
 	{
-		return "/changeresearch [PlayerName] [SubstanceName] [boolean]";
+		return "/changeresearch <PlayerName> <SubstanceName> <boolean>";
 	}
 
 	@Override
 	public int getRequiredPermissionLevel() 
 	{
-		return super.getRequiredPermissionLevel();
+		return 2;
 	}
 	
 	@Override

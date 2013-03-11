@@ -19,21 +19,26 @@ public class GuiPeriodicTable extends GuiScreen
 	int xSize = 0;
 	int ySize = 0;
 	
-	int scrollY = 0;
+	float scrollY = 0.0F;
+	
 	boolean isScrolling = false;
 	int temperature = 20;
+	
+	final int minScroll = 18;
+	final int maxScroll = 146;
 	
 	Substance[] substances = SubstanceRegistry.getAllSubstances();
 	SubstanceSlot[] substanceSlots = new SubstanceSlot[36];
 	
-	private GuiTextField searchField;
+	private GuiTextField temperatureField;
 	
 	@Override
 	public void drawScreen(int par1, int par2, float par3) 
 	{
 		drawDefaultBackground();
 		
-		boolean var4 = Mouse.isButtonDown(0);		
+		boolean var4 = Mouse.isButtonDown(0);
+		if(substances.length <= 36) var4 = false;
 		
 		GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
 		this.mc.renderEngine.bindTexture(this.mc.renderEngine.getTexture(CommonProxy.GUI_PERIODIC));
@@ -42,27 +47,34 @@ public class GuiPeriodicTable extends GuiScreen
 		fontRenderer.drawString("Periodic Table", guiLeft + 7, guiTop + 7, 0);
 		fontRenderer.drawString("temp.:", guiLeft + 160, guiTop + 7, 0);	
 		
-		searchField.drawTextBox();
+		temperatureField.drawTextBox();
 		drawSubstances();
 		
 		GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
 		this.mc.renderEngine.bindTexture(this.mc.renderEngine.getTexture(CommonProxy.GUI_PERIODIC));
-		drawTexturedModalRect(guiLeft + 229, guiTop + scrollY, 0, 170, 12, 15);
-				
+		
+		int var1 = guiTop + minScroll;
+        int var2 = var1 + maxScroll;
+		
+        drawTexturedModalRect(guiLeft + 229, var1 + (int)((float)(var2 - var1 - 17) * this.scrollY), 0 + substances.length <= 36 ? 12 : 0, 170, 12, 15);
+        
 		if(var4)
 		{
-			if((par1 > guiLeft + 229 && par1 <= guiLeft + 241) && (par2 > guiTop + scrollY && par2 <= guiTop + scrollY + 15))
+			if((par1 > guiLeft + 229 && par1 <= guiLeft + 241) && (par2 > guiTop + minScroll && par2 <= guiTop + maxScroll + 15))
 			{
 				isScrolling = true;
 			}			
 		}
-		else isScrolling = false;
+		else if(isScrolling == true) isScrolling = false;
 		
 		if(isScrolling)
-		{
-			scrollY = par2 - guiTop - 7;
-			if(scrollY > 147) scrollY = 147;
-			if(scrollY < 18) scrollY = 18;
+		{	        			
+			scrollY = ((float)(par2 - var1) - 7.5F) / ((float)(var2 - var1) - 15.0F);
+			
+			if(scrollY > 1.0F) scrollY = 1.0F;
+			if(scrollY < 0.0F) scrollY = 0.0F;
+			
+			scrollTo(scrollY);
 		}
 		
 		super.drawScreen(par1, par2, par3);
@@ -80,7 +92,7 @@ public class GuiPeriodicTable extends GuiScreen
 	protected void mouseClicked(int par1, int par2, int par3) 
 	{			
 		super.mouseClicked(par1, par2, par3);				
-		searchField.mouseClicked(par1, par2, par3);
+		temperatureField.mouseClicked(par1, par2, par3);
 	}
 
 	@Override
@@ -96,7 +108,6 @@ public class GuiPeriodicTable extends GuiScreen
 		ySize = 170;
 		guiLeft = (this.width - xSize) /2;
 		guiTop = (this.height - ySize) /2;
-		scrollY = 18;
 		
 		int counter = 0;
 		
@@ -113,32 +124,79 @@ public class GuiPeriodicTable extends GuiScreen
 		}
 		
 		this.controlList.clear();
-		
-		fontRenderer.FONT_HEIGHT = 6;
-		
-		searchField = new GuiTextField(fontRenderer, this.guiLeft + 190, this.guiTop + 5, 46, 10);
-        searchField.setMaxStringLength(6);
-        searchField.setEnableBackgroundDrawing(true);
-        searchField.setVisible(true);
-        searchField.setTextColor(16777215);	
-        searchField.setText(Integer.toString(temperature));
+			
+		temperatureField = new GuiTextField(fontRenderer, this.guiLeft + 190, this.guiTop + 5, 46, 10);
+        temperatureField.setMaxStringLength(6);
+        temperatureField.setEnableBackgroundDrawing(true);
+        temperatureField.setVisible(true);
+        temperatureField.setTextColor(16777215);	
+        temperatureField.setText(Integer.toString(temperature));
 		
 		super.initGui();
+	}
+	
+	void scrollTo(float f1)
+	{
+        int var1 = this.substances.length / 9 - 4 + 1;
+        int var2 = (int)((double)(f1 * (float)var1) + 0.5D);
+        
+		for(int i = 0; i < 4; i++)
+		{
+			for(int j = 0; j < 9; j++)
+			{	
+				int counter = j + (i + var2) * 9;
+				
+				Substance s = null;
+				if(counter >= 0 && counter < this.substances.length)s = substances[counter];
+				
+				substanceSlots[j + i * 9].substance = s;
+			}
+		}
+	}
+
+	@Override
+	public void handleMouseInput() 
+	{		
+		super.handleMouseInput();
+        int var1 = Mouse.getEventDWheel();
+
+        if (var1 != 0 && substances.length > 36)
+        {
+            int var2 = substances.length / 9 - 4 + 1;
+
+            if (var1 > 0)
+            {
+                var1 = 1;
+            }
+
+            if (var1 < 0)
+            {
+                var1 = -1;
+            }
+
+            this.scrollY = (float)((double)this.scrollY - (double)var1 / (double)var2);
+
+            if (this.scrollY < 0.0F)
+            {
+                this.scrollY = 0.0F;
+            }
+
+            if (this.scrollY > 1.0F)
+            {
+                this.scrollY = 1.0F;
+            }
+
+            scrollTo(this.scrollY);
+        }
 	}
 
 	@Override
 	protected void keyTyped(char par1, int par2) 
 	{
 		super.keyTyped(par1, par2);
-		searchField.textboxKeyTyped(par1, par2);
+		temperatureField.textboxKeyTyped(par1, par2);
 		
-		try{temperature = Integer.parseInt(searchField.getText());
+		try{temperature = Integer.parseInt(temperatureField.getText());
 		} catch(Exception e){}
-	}
-
-	@Override
-	public void updateScreen() {
-		// TODO Auto-generated method stub
-		super.updateScreen();
 	}	
 }

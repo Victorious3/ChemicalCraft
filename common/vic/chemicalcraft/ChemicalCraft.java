@@ -110,7 +110,7 @@ public class ChemicalCraft {
         public void postInit(FMLPostInitializationEvent event) 
         {
         	SubstanceRegistry.getInstance().addManifests();
-        	
+ 	
         	if(Loader.isModLoaded("Thaumcraft")) isThaumcraftLoaded = true;
         	if(Loader.isModLoaded("NotEnoughItems")) isNEILoaded = true;
         }

@@ -75,6 +75,14 @@ public class SubstanceRegistry {
 		
 	}
 	
+	public static String[] getAllSubstanceNames()
+	{
+		Collection object = substances.keySet();
+		String[] sublist = (String[]) object.toArray(new String[object.size()]);
+		
+		return sublist;
+	}
+	
 	/**
 	 * returns a Substance by its name
 	 * @return Substance

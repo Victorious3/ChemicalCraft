@@ -26,7 +26,7 @@ public class Substance {
 		
 		addToList();
 	}
-	
+
 	/**
 	 * Is called when creating a Substance to add it to the Substance Registry.
 	 */

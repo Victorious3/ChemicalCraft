@@ -16,6 +16,7 @@ public class CommonProxy {
     
     public static String GUI_PERIODIC = "/vic/chemicalcraft/resources/Gui_PeriodicTable.png";
     public static String TEX_GASBORE = "/vic/chemicalcraft/resources/GasBore.png";
+    public static String TEX_STOVE = "/vic/chemicalcraft/resources/Stove.png";
 
     public static SubstanceResearchClient substanceResearchClient; 
     

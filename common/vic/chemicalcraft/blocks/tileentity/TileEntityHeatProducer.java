@@ -10,6 +10,7 @@ public class TileEntityHeatProducer extends TileEntity implements IHeatProducer 
 
 	public int heat = 0;
 	public int heatAmount = 5;
+	public int orientation = 2;
 	
 	@Override
 	public int getHeatAmount() 

@@ -13,8 +13,8 @@ import org.lwjgl.opengl.GL11;
 import vic.chemicalcraft.blocks.tileentity.TileEntityGasBore;
 import vic.chemicalcraft.proxy.CommonProxy;
 
-public class RenderGasBore extends TileEntitySpecialRenderer {
-	
+public class RenderGasBore extends TileEntitySpecialRenderer 
+{	
 	ModelGasBore modelGasBore = new ModelGasBore();
 	
 	@Override

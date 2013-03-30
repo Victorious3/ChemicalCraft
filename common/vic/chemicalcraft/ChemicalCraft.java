@@ -31,7 +31,7 @@ import cpw.mods.fml.common.network.NetworkMod;
 import cpw.mods.fml.common.network.NetworkRegistry;
 import cpw.mods.fml.common.registry.GameRegistry;
 
-@Mod(modid="ChemicalCraft", name="Chemical Craft", version="0.0.1")
+@Mod(modid="ChemicalCraft", name="Chemical Craft", version="0.0.2")
 @NetworkMod(clientSideRequired=true, serverSideRequired=false, channels={"CC_researchData"}, packetHandler = PacketHandler.class)
 public class ChemicalCraft {
 

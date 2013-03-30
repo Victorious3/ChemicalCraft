@@ -1,11 +1,11 @@
 package vic.chemicalcraft.blocks.render;
 
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.entity.Entity;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraftforge.client.ForgeHooksClient;
 import net.minecraftforge.common.ForgeDirection;
 
 import org.lwjgl.opengl.GL11;
@@ -44,7 +44,8 @@ public class RenderGasBore extends TileEntitySpecialRenderer
         GL11.glTranslatef((float)d + 0.5F, (float)d1 + 1.5F, (float)d2 + 0.5F);
         GL11.glRotatef(180, 0F, 0F, 1F);
         GL11.glRotatef(rotation, 0F, 1F, 0F);
-        ForgeHooksClient.bindTexture(CommonProxy.TEX_GASBORE, 0);    
+
+        Minecraft.getMinecraft().renderEngine.bindTexture(CommonProxy.TEX_GASBORE);    
         modelGasBore.renderModel(0.0625F);    
         GL11.glPopMatrix(); 
 		

@@ -37,8 +37,8 @@ public class SubstanceRegistry {
 	
 	public void addManifests()
 	{
-		bindSubstanceStack(Item.redstone.getItemName(), new SubstanceStack(1, new Substance[]{Electrolyt}, new int[]{4}, 1, EnumPhase.SOLID));
-		bindSubstanceStack(Block.bedrock.getBlockName(), new SubstanceStack(1, new Substance[]{Carbon}, new int[]{10}, 1, EnumPhase.SOLID));
+		bindSubstanceStack(Item.redstone.getStatName(), new SubstanceStack(1, new Substance[]{Electrolyt}, new int[]{4}, 1, EnumPhase.SOLID));
+		bindSubstanceStack(Block.bedrock.getUnlocalizedName(), new SubstanceStack(1, new Substance[]{Carbon}, new int[]{10}, 1, EnumPhase.SOLID));
 	}
     
 	/**
@@ -135,9 +135,9 @@ public class SubstanceRegistry {
 		Item item = stack.getItem();
 		SubstanceStack out = null;
 		
-		if(SubstanceRegistry.getSubstanceStack(item.getItemName()) != null)
+		if(SubstanceRegistry.getSubstanceStack(item.getStatName()) != null)
         {
-        	out = SubstanceRegistry.getSubstanceStack(item.getItemName());
+        	out = SubstanceRegistry.getSubstanceStack(item.getStatName());
         }   
         if(item instanceof ItemBlock)
         {

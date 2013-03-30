@@ -3,6 +3,7 @@ package vic.chemicalcraft.blocks;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 import vic.chemicalcraft.ChemicalCraft;
@@ -12,13 +13,13 @@ import vic.chemicalcraft.helper.Utils;
 
 public class GasBore extends GenericChemBlock {
 
-	public GasBore(int id, int texture, Material material) 
+	public GasBore(int id, Material material, String texture) 
 	{
-		super(id, texture, Material.anvil);
+		super(id, Material.anvil, texture);
 	}
 
 	@Override
-	public void onBlockPlacedBy(World par1World, int par2, int par3, int par4, EntityLiving par5EntityLiving) 
+	public void onBlockPlacedBy(World par1World, int par2, int par3, int par4, EntityLiving par5EntityLiving, ItemStack stack) 
 	{
 		TileEntityElectric TE = (TileEntityElectric) par1World.getBlockTileEntity(par2, par3, par4);
 		TE.orientation = (short) Utils.get2DOrientationForPlacing(par5EntityLiving).ordinal();	

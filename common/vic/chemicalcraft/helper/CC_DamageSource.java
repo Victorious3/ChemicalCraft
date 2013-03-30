@@ -1,5 +1,6 @@
 package vic.chemicalcraft.helper;
 
+import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.DamageSource;
 
@@ -17,9 +18,9 @@ public class CC_DamageSource extends DamageSource{
 	}
 
 	@Override
-	public String getDeathMessage(EntityPlayer par1EntityPlayer) 
+	public String getDeathMessage(EntityLiving par1EntityLiving) 
 	{
-		return par1EntityPlayer.username + this.deathMessage;
+		return ((EntityPlayer)par1EntityLiving).username + this.deathMessage;
 	}
 
 }

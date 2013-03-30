@@ -9,9 +9,9 @@ import vic.chemicalcraft.blocks.tileentity.TileEntityHeatAcceptor;
 public class BlockHeatAcceptor extends GenericChemBlock
 {
 
-	public BlockHeatAcceptor(int id, int texture, Material material) 
+	public BlockHeatAcceptor(int id, Material material, String texture)
 	{
-		super(id, texture, material);
+		super(id, material, texture);
 	}
 	
 	@Override

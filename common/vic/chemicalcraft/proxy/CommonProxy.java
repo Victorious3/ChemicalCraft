@@ -11,12 +11,10 @@ import cpw.mods.fml.common.registry.TickRegistry;
 import cpw.mods.fml.relauncher.Side;
 
 public class CommonProxy {
-    public static String ITEMS_PNG = "/vic/chemicalcraft/resources/items.png";
-    public static String BLOCK_PNG = "/vic/chemicalcraft/resources/terrain.png";
     
-    public static String GUI_PERIODIC = "/vic/chemicalcraft/resources/Gui_PeriodicTable.png";
-    public static String TEX_GASBORE = "/vic/chemicalcraft/resources/GasBore.png";
-    public static String TEX_STOVE = "/vic/chemicalcraft/resources/Stove.png";
+    public static String GUI_PERIODIC = "/vic/chemicalcraft/textures/Gui_PeriodicTable.png";
+    public static String TEX_GASBORE = "/vic/chemicalcraft/textures/GasBore.png";
+    public static String TEX_STOVE = "/vic/chemicalcraft/textures/Stove.png";
 
     public static SubstanceResearchClient substanceResearchClient; 
     
@@ -36,8 +34,5 @@ public class CommonProxy {
     
     public void registerHandlersSP() {}
 
-	public void registerBlocksAndItems() 
-	{
-		
-	}
+	public void registerBlocksAndItems() {}
 }

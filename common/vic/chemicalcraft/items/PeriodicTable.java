@@ -9,16 +9,14 @@ public class PeriodicTable extends GenericChemItem {
 
 	public PeriodicTable(int par1) 
 	{
-		super(par1);
+		super(par1, "table");
 	}
 
 	@Override
-	public ItemStack onItemRightClick(ItemStack par1ItemStack, World par2World, EntityPlayer par3EntityPlayer) {
-
-		par3EntityPlayer.openGui(ChemicalCraft.instance, 1, par2World, par3EntityPlayer.chunkCoordX, par3EntityPlayer.chunkCoordY, par3EntityPlayer.chunkCoordZ);
-		
+	public ItemStack onItemRightClick(ItemStack par1ItemStack, World par2World, EntityPlayer par3EntityPlayer) 
+	{
+		par3EntityPlayer.openGui(ChemicalCraft.instance, 1, par2World, par3EntityPlayer.chunkCoordX, par3EntityPlayer.chunkCoordY, par3EntityPlayer.chunkCoordZ);	
 		return par1ItemStack;
 	}
-
 	
 }

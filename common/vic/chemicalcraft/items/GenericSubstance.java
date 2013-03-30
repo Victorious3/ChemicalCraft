@@ -3,11 +3,13 @@ package vic.chemicalcraft.items;
 import java.util.List;
 
 import net.minecraft.block.Block;
+import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.util.Icon;
 import net.minecraft.world.World;
 import vic.chemicalcraft.CC_Registry;
 import vic.chemicalcraft.blocks.tileentity.TileEntityGas;
@@ -25,28 +27,42 @@ public class GenericSubstance extends GenericChemItem implements ISubstanceInter
 	public int heat = 0;
 	public int formula = 1;
 	
+	private Icon[] iconIndex = new Icon[6];
+	
 	public GenericSubstance(int par1) 
 	{
-		super(par1);
+		super(par1, "substance_solid");
 		this.setHasSubtypes(true);
 	}	
 
 	@Override
 	@SideOnly(Side.CLIENT)
-	public int getIconIndex(ItemStack stack, int pass) {						
-		
-		if(stack.getItemDamage() == 1)return pass > 0 ? 1: 0;
-		if(stack.getItemDamage() == 2)return pass > 0 ? 3: 2;
-		if(stack.getItemDamage() == 3)return pass > 0 ? 5: 4;
-		
-		if(stack.getItemDamage() == 4)return 0;
-		if(stack.getItemDamage() == 5)return 2;
-		if(stack.getItemDamage() == 6)return 4;
-		
-		return pass > 0 ? 1: 0;
-	}
+    public Icon getIcon(ItemStack stack, int pass) 
+	{    
+	    if(stack.getItemDamage() == 1)return pass > 0 ? this.iconIndex[1]: this.iconIndex[0];
+        if(stack.getItemDamage() == 2)return pass > 0 ? this.iconIndex[3]: this.iconIndex[2];
+        if(stack.getItemDamage() == 3)return pass > 0 ? this.iconIndex[5]: this.iconIndex[4];
+        
+        if(stack.getItemDamage() == 4)return this.iconIndex[0];
+        if(stack.getItemDamage() == 5)return this.iconIndex[2];
+        if(stack.getItemDamage() == 6)return this.iconIndex[4];
+        
+        return pass > 0 ? this.iconIndex[1]: this.iconIndex[0];
+    }
 
 	@Override
+    @SideOnly(Side.CLIENT)
+    public void updateIcons(IconRegister par1IconRegister) 
+	{
+	    this.iconIndex[0] = par1IconRegister.registerIcon("vic/chemicalcraft:substance_liquid");
+	    this.iconIndex[1] = par1IconRegister.registerIcon("vic/chemicalcraft:substance_liquid_fill");
+	    this.iconIndex[2] = par1IconRegister.registerIcon("vic/chemicalcraft:substance_solid");
+	    this.iconIndex[3] = par1IconRegister.registerIcon("vic/chemicalcraft:substance_solid_fill");
+	    this.iconIndex[4] = par1IconRegister.registerIcon("vic/chemicalcraft:substance_gaseous");
+        this.iconIndex[5] = par1IconRegister.registerIcon("vic/chemicalcraft:substance_gaseous_fill");
+    }
+
+    @Override
 	@SideOnly(Side.CLIENT)
 	public boolean requiresMultipleRenderPasses() {
 		return true;
@@ -188,7 +204,7 @@ public class GenericSubstance extends GenericChemItem implements ISubstanceInter
 	        }
 	        else
 	        {
-	            if (par3World.canPlaceEntityOnSide(spawnID, par4, par5, par6, false, par7, (Entity)null))
+	            if (par3World.canPlaceEntityOnSide(spawnID, par4, par5, par6, false, par7, (Entity)null, new ItemStack(this)))
 	            {
 	                Block var12 = Block.blocksList[spawnID];
 
@@ -196,7 +212,7 @@ public class GenericSubstance extends GenericChemItem implements ISubstanceInter
 	                {
 	                    if (par3World.getBlockId(par4, par5, par6) == spawnID)
 	                    {
-	                        Block.blocksList[spawnID].onBlockPlacedBy(par3World, par4, par5, par6, par2EntityPlayer);
+	                        Block.blocksList[spawnID].onBlockPlacedBy(par3World, par4, par5, par6, par2EntityPlayer, new ItemStack(this));
 	                        par3World.setBlockTileEntity(par4, par5, par6, new TileEntityGas(SubstanceStack.getFromNBT(par1ItemStack.getTagCompound()), 100));
 	                    }
 

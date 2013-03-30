@@ -4,7 +4,6 @@ import net.minecraft.command.CommandHandler;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.crafting.CraftingManager;
 import net.minecraftforge.common.Configuration;
-import universalelectricity.core.UniversalElectricity;
 import vic.chemicalcraft.blocks.tileentity.TileEntityGas;
 import vic.chemicalcraft.blocks.tileentity.TileEntityGasBore;
 import vic.chemicalcraft.blocks.tileentity.TileEntityHeatAcceptor;
@@ -77,8 +76,6 @@ public class ChemicalCraft {
         	config.save();
         	
         	SubstanceRegistry.getInstance();
-        	
-        	UniversalElectricity.register(this, 1, 2, 2, false);
         }
         
         //Render IDs

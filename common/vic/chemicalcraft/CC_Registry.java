@@ -29,20 +29,25 @@ public class CC_Registry {
 	
 	public static void registerBlocksAndItems()
 	{
-		gasBore = new GasBore(ChemicalCraft.gasBoreID, 2, Material.iron).setBlockName("gasBore").setCreativeTab(ChemicalCraft.tabSubstances);
-		genericGas = new Gas(ChemicalCraft.genericGasID, 0, Material.air).setBlockName("genericGas");
-		heatProducer = new BlockHeatProducer(ChemicalCraft.heatProducerID, 1, Material.iron).setBlockName("heatProducer").setCreativeTab(ChemicalCraft.tabSubstances);
-		heatAcceptor = new BlockHeatAcceptor(ChemicalCraft.heatAcceptorID, 1, Material.iron).setBlockName("heatAcceptor").setCreativeTab(ChemicalCraft.tabSubstances);
+		gasBore = new GasBore(ChemicalCraft.gasBoreID, Material.iron, "default").setCreativeTab(ChemicalCraft.tabSubstances);
+		genericGas = new Gas(ChemicalCraft.genericGasID, Material.air, "gas");
+		heatProducer = new BlockHeatProducer(ChemicalCraft.heatProducerID, Material.iron, "default").setCreativeTab(ChemicalCraft.tabSubstances);
+		heatAcceptor = new BlockHeatAcceptor(ChemicalCraft.heatAcceptorID, Material.iron, "default").setCreativeTab(ChemicalCraft.tabSubstances);
 		
-		substance = new GenericSubstance(ChemicalCraft.substanceID).setItemName("substance").setCreativeTab(ChemicalCraft.tabSubstances);
-		tongs = new HeatAbsorber(ChemicalCraft.tongsID, 80).setIconCoord(7, 1).setItemName("tongs").setCreativeTab(ChemicalCraft.tabSubstances); 
-		gloves = new HeatAbsorber(ChemicalCraft.glovesID, 30).setIconCoord(6, 1).setItemName("gloves").setCreativeTab(ChemicalCraft.tabSubstances); 
-		periodicTable = new PeriodicTable(ChemicalCraft.periodicTableID).setIconCoord(8, 1).setItemName("periodicTable").setCreativeTab(ChemicalCraft.tabSubstances); 
+		substance = new GenericSubstance(ChemicalCraft.substanceID).setCreativeTab(ChemicalCraft.tabSubstances);
+		tongs = new HeatAbsorber(ChemicalCraft.tongsID, 80, "tongs").setCreativeTab(ChemicalCraft.tabSubstances); 
+		gloves = new HeatAbsorber(ChemicalCraft.glovesID, 30, "gloves").setCreativeTab(ChemicalCraft.tabSubstances); 
+		periodicTable = new PeriodicTable(ChemicalCraft.periodicTableID).setCreativeTab(ChemicalCraft.tabSubstances); 
 		
-        GameRegistry.registerBlock(genericGas);
-        GameRegistry.registerBlock(gasBore);
-        GameRegistry.registerBlock(heatProducer);
-        GameRegistry.registerBlock(heatAcceptor);
+        GameRegistry.registerBlock(genericGas, "genericGas");
+        GameRegistry.registerBlock(gasBore, "gasBore");
+        GameRegistry.registerBlock(heatProducer, "heatProducer");
+        GameRegistry.registerBlock(heatAcceptor, "heatAcceptor");
+        
+        GameRegistry.registerItem(gloves, "gloves");
+        GameRegistry.registerItem(tongs, "tongs");
+        GameRegistry.registerItem(substance, "substance");
+        GameRegistry.registerItem(periodicTable, "periodicTable");
 	}
 	
 	public static void addNames()

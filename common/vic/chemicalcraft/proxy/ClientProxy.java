@@ -24,8 +24,6 @@ public class ClientProxy extends CommonProxy {
 	    
 		ChemicalCraft.renderID = RenderingRegistry.getNextAvailableRenderId();
 		
-		MinecraftForgeClient.preloadTexture(ITEMS_PNG);
-	    MinecraftForgeClient.preloadTexture(BLOCK_PNG);
 	    MinecraftForgeClient.preloadTexture(GUI_PERIODIC);
 	    MinecraftForgeClient.preloadTexture(TEX_GASBORE);
 	    MinecraftForgeClient.preloadTexture(TEX_STOVE);    

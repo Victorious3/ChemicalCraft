@@ -140,9 +140,9 @@ public class TickHandlerSP implements ITickHandler{
         		else formula = IS.getSubstanceStack(stack).toString();
         	}      	
         }
-        else if(SubstanceRegistry.getSubstanceStack(item.getItemName()) != null)
+        else if(SubstanceRegistry.getSubstanceStack(item.getStatName()) != null)
         {
-        	formula = SubstanceRegistry.getSubstanceStack(item.getItemName()).toString();
+        	formula = SubstanceRegistry.getSubstanceStack(item.getStatName()).toString();
         }
      
         if (!var4.isEmpty() && formula != null)
@@ -161,14 +161,8 @@ public class TickHandlerSP implements ITickHandler{
                 }
             }
 
-            var6 = x + 20;
-            var7 = y - 20;
-            
-            if(ChemicalCraft.isNEILoaded)
-            {
-            	var6 -= 8;
-            	var7 -= 8;
-            }
+            var6 = x + 12;
+            var7 = y - 28;
             
             if(fontRenderer.getStringWidth(formula) > var5)
             {

@@ -41,7 +41,7 @@ public class GuiPeriodicTable extends GuiScreen
 		if(substances.length <= 36) var4 = false;
 		
 		GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
-		this.mc.renderEngine.bindTexture(this.mc.renderEngine.getTexture(CommonProxy.GUI_PERIODIC));
+		this.mc.renderEngine.bindTexture(CommonProxy.GUI_PERIODIC);
 		drawTexturedModalRect(guiLeft, guiTop, 0, 0, xSize, ySize);
 		
 		fontRenderer.drawString("Periodic Table", guiLeft + 7, guiTop + 7, 0);
@@ -51,7 +51,7 @@ public class GuiPeriodicTable extends GuiScreen
 		drawSubstances();
 		
 		GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
-		this.mc.renderEngine.bindTexture(this.mc.renderEngine.getTexture(CommonProxy.GUI_PERIODIC));
+		this.mc.renderEngine.bindTexture(CommonProxy.GUI_PERIODIC);
 		
 		int var1 = guiTop + minScroll;
         int var2 = var1 + maxScroll;
@@ -123,7 +123,7 @@ public class GuiPeriodicTable extends GuiScreen
 			}
 		}
 		
-		this.controlList.clear();
+		this.buttonList.clear();
 			
 		temperatureField = new GuiTextField(fontRenderer, this.guiLeft + 190, this.guiTop + 5, 46, 10);
         temperatureField.setMaxStringLength(6);

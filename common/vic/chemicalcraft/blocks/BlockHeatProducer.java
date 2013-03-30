@@ -20,9 +20,9 @@ import vic.chemicalcraft.helper.Utils;
 
 public class BlockHeatProducer extends GenericChemBlock {
 
-	public BlockHeatProducer(int id, int texture, Material material) 
+	public BlockHeatProducer(int id, Material material, String texture) 
 	{
-		super(id, texture, material);
+		super(id, material, texture);
 	}
 	
 	@Override
@@ -72,13 +72,14 @@ public class BlockHeatProducer extends GenericChemBlock {
 	}
 	
 	@Override
-	public void onBlockPlacedBy(World par1World, int par2, int par3, int par4, EntityLiving par5EntityLiving) 
+	public void onBlockPlacedBy(World par1World, int par2, int par3, int par4, EntityLiving par5EntityLiving, ItemStack stack) 
 	{
 		TileEntityHeatProducer TE = (TileEntityHeatProducer) par1World.getBlockTileEntity(par2, par3, par4);
 		TE.orientation = (short) Utils.get2DOrientationForPlacing(par5EntityLiving).getOpposite().ordinal();
 		if(!isNeighborBlockSolid(par1World, par2, par3, par4, ForgeDirection.getOrientation(((TileEntityHeatProducer)(par1World.getBlockTileEntity(par2, par3, par4))).orientation)))
 		{
-			par1World.setBlockWithNotify(par2, par3, par4, 0);
+			par1World.setBlock(par2, par3, par4, 0);
+			
 			if(par5EntityLiving instanceof EntityPlayer)
 			{
 				((EntityPlayer)par5EntityLiving).inventory.addItemStackToInventory(new ItemStack(this.blockID, 1, 0));
@@ -101,7 +102,7 @@ public class BlockHeatProducer extends GenericChemBlock {
 		if(!isNeighborBlockSolid(par1World, par2, par3, par4, ForgeDirection.getOrientation(((TileEntityHeatProducer)(par1World.getBlockTileEntity(par2, par3, par4))).orientation)))
 		{
 			this.dropBlockAsItem(par1World, par2, par3, par4, par1World.getBlockMetadata(par2, par3, par4), 0);
-			par1World.setBlockWithNotify(par2, par3, par4, 0);
+			par1World.setBlock(par2, par3, par4, 0);
 			return;
 		}
 	}

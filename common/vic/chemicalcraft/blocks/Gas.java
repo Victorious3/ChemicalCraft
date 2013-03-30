@@ -24,10 +24,10 @@ import cpw.mods.fml.relauncher.SideOnly;
 
 public class Gas extends GenericChemBlock implements ISubstanceInterface{
 	
-	public Gas(int id, int texture, Material material) 
+	public Gas(int id, Material material, String texture)
 	{
-		super(id, texture, material);
-        this.setLightOpacity(3);
+		super(id, material, texture);
+		this.setLightOpacity(3);
         this.setBlockUnbreakable();
         this.setBlockBounds(0.0001F, 0.0001F, 0.0001F, 0.9999F, 0.9999F, 0.9999F);
 	}
@@ -35,7 +35,6 @@ public class Gas extends GenericChemBlock implements ISubstanceInterface{
 	@Override
 	public void updateTick(World par1World, int par2, int par3, int par4, Random par5Random) 
 	{		
-		par1World.editingBlocks = true;
 		TileEntityGas currTE = (TileEntityGas)par1World.getBlockTileEntity(par2, par3, par4);
 		if(currTE.strenght < 10) par1World.setBlock(par2, par3, par4, 0);
 		ArrayList<Position> pos = getGasBlocks(par2, par3, par4, par1World);
@@ -55,8 +54,7 @@ public class Gas extends GenericChemBlock implements ISubstanceInterface{
 		}		
 		
 		currTE.strenght -= strenghtToPass;
-		par1World.editingBlocks = false;
-		par1World.scheduleBlockUpdate(par2, par3, par4, this.blockID, this.tickRate());
+		par1World.scheduleBlockUpdate(par2, par3, par4, this.blockID, this.tickRate(par1World));
 	}
 
 	@Override
@@ -66,7 +64,7 @@ public class Gas extends GenericChemBlock implements ISubstanceInterface{
 
         if (par1World.getBlockId(par2, par3, par4) == this.blockID)
         {
-            par1World.scheduleBlockUpdate(par2, par3, par4, this.blockID, this.tickRate());
+            par1World.scheduleBlockUpdate(par2, par3, par4, this.blockID, this.tickRate(par1World));
         }
     }
 	
@@ -195,8 +193,8 @@ public class Gas extends GenericChemBlock implements ISubstanceInterface{
 	}
 
 	@Override
-	public ItemStack getItemStackBasedOnPhase(EnumPhase phase) {
-		// TODO Auto-generated method stub
+	public ItemStack getItemStackBasedOnPhase(EnumPhase phase)
+	{
 		return null;
 	}
 

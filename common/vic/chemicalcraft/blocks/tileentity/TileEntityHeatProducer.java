@@ -1,5 +1,6 @@
 package vic.chemicalcraft.blocks.tileentity;
 
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraftforge.common.ForgeDirection;
 import net.minecraftforge.common.MinecraftForge;
@@ -19,6 +20,20 @@ public class TileEntityHeatProducer extends TileEntity implements IHeatProducer 
 	}
 
 	@Override
+    public void readFromNBT(NBTTagCompound par1nbtTagCompound) 
+	{
+        super.readFromNBT(par1nbtTagCompound);
+        orientation = par1nbtTagCompound.getInteger("orientation");
+    }
+
+    @Override
+    public void writeToNBT(NBTTagCompound par1nbtTagCompound) 
+    {
+        super.writeToNBT(par1nbtTagCompound);
+        par1nbtTagCompound.setInteger("orientation", orientation);
+    }
+
+    @Override
 	public void onHeatSend(ForgeDirection direction, int amount) 
 	{	
 		heat += amount;

@@ -58,5 +58,4 @@ public class GasBore extends GenericChemBlock {
 	{
 		return ChemicalCraft.renderID;
 	}
-
 }

@@ -8,6 +8,7 @@ import vic.chemicalcraft.blocks.tileentity.TileEntityGas;
 import vic.chemicalcraft.blocks.tileentity.TileEntityGasBore;
 import vic.chemicalcraft.blocks.tileentity.TileEntityHeatAcceptor;
 import vic.chemicalcraft.blocks.tileentity.TileEntityHeatProducer;
+import vic.chemicalcraft.blocks.tileentity.TileEntityTemperedFabricator;
 import vic.chemicalcraft.commands.CommandResearch;
 import vic.chemicalcraft.handler.GuiHandler;
 import vic.chemicalcraft.handler.PacketHandler;
@@ -48,6 +49,7 @@ public class ChemicalCraft {
         public static int gasBoreID;
         public static int heatProducerID;
         public static int heatAcceptorID;
+        public static int temperedFabricatorID;
         
         public static int substanceID;
         public static int glovesID;
@@ -67,6 +69,7 @@ public class ChemicalCraft {
         	gasBoreID = config.get(Configuration.CATEGORY_BLOCK, "gasBore", 2501).getInt();
         	heatProducerID = config.get(Configuration.CATEGORY_BLOCK, "heatProducer", 2502).getInt();
         	heatAcceptorID = config.get(Configuration.CATEGORY_BLOCK, "heatAcceptor", 2503).getInt();
+        	temperedFabricatorID = config.get(Configuration.CATEGORY_BLOCK, "temperedFabricator", 2504).getInt();
         	
         	substanceID = config.get(Configuration.CATEGORY_ITEM, "genericSubstance", 10000).getInt();
         	glovesID = config.get(Configuration.CATEGORY_ITEM, "gloves", 10001).getInt();
@@ -97,6 +100,7 @@ public class ChemicalCraft {
             GameRegistry.registerTileEntity(TileEntityGasBore.class, "CC_TileEntityGasBore");
             GameRegistry.registerTileEntity(TileEntityHeatProducer.class, "CC_TileEntityHeatProducer");
             GameRegistry.registerTileEntity(TileEntityHeatAcceptor.class, "CC_TileEntityHeatAcceptor");
+            GameRegistry.registerTileEntity(TileEntityTemperedFabricator.class, "CC_TileEntityTemperedFabricator");
                 
             // Crafting                
             CraftingManager.getInstance().getRecipeList().add(new SubstanceRecipes());
